@@ -109,7 +109,7 @@ def oauth_authorized(resp):
     user = query.get()
 
     if user is None:
-        user = User(twitter_id = int(resp['user_key']),
+        user = User(twitter_id = int(resp['user_id']),
                     name = resp['screen_name'],
                     oauth_token = resp['oauth_token'],
                     oauth_secret = resp['oauth_token_secret']

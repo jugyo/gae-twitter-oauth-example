@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Overview</h2>
+  {% if g.user %}
+    <p>
+      Hello {{ g.user.name }}!  Wanna tweet something?
+  {% else %}
+    <p>
+      Sign in to view your public timeline and to tweet from this
+      example application.
+    <p>
+      <a href="{{ url_for('login') }}"><img src="{{
+        url_for('static', filename='sign-in.png') }}" alt="sign in"></a>
+  {% endif %}
+{% endblock %}

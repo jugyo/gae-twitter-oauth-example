@@ -3,13 +3,14 @@
 # ----------------------------------------
 
 from flask import Flask, redirect, url_for, session, request, render_template, abort, flash, get_flashed_messages, g
-from flaskext.oauth import OAuth
 app = Flask(__name__)
 #app.debug = True
 # set the secret key.  keep this really secret:
 app.secret_key = 'xxxxxxxxx'
 
 # ----------------------------------------
+from flaskext.oauth import OAuth
+import conf
 
 oauth = OAuth()
 # Use Twitter as example remote application
@@ -27,8 +28,8 @@ twitter = oauth.remote_app('twitter',
     # user interface on the twitter side.
     authorize_url='http://api.twitter.com/oauth/authenticate',
     # the consumer keys from the twitter application registry.
-    consumer_key='YOUR CONSUMER KEY',
-    consumer_secret='YOUR CONSUMER SECRET'
+    consumer_key=conf.consumer_key,
+    consumer_secret=conf.consumer_secret
 )
 
 # ----------------------------------------

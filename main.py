@@ -74,7 +74,15 @@ def get_twitter_token():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    tweets = None
+    if g.user is not None:
+        resp = twitter.get('statuses/home_timeline.json')
+        if resp.status == 200:
+            tweets = resp.data
+        else:
+            flash('Unable to load tweets from Twitter. Maybe out of '
+                  'API calls or Twitter is overloaded.')
+    return render_template('index.html', tweets=tweets)
 
 
 @app.route('/login')

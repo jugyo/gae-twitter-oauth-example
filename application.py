@@ -123,4 +123,5 @@ def oauth_authorized(resp):
 # ----------------------------------------
 
 if __name__ == '__main__':
-    app.run()
+    from wsgiref.handlers import CGIHandler
+    CGIHandler().run(app)

@@ -5,4 +5,4 @@ api_version: 1
 
 handlers:
 - url: /.*
-  script: app.cgi
+  script: application.py

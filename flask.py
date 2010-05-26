@@ -33,7 +33,10 @@ except ImportError:
     try:
         import json
     except ImportError:
-        json_available = False
+        try:
+            from django.utils import simplejson as json
+        except ImportError:
+            json_available = False
 
 # utilities we import from Werkzeug and Jinja2 that are unused
 # in the module but are exported as public interface.

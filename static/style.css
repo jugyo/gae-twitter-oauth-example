@@ -25,6 +25,12 @@ p.error {
     background: #EBCACA;
 }
 
+p#footer {
+  font-style: italic;
+  font-size: 90%;
+  text-align: right;
+}
+
 input {
     font-family: 'Georgia', serif;
     font-size: 16px;

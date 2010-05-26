@@ -42,6 +42,12 @@ class User(db.Model):
     oauth_token = db.StringProperty()
     oauth_secret = db.StringProperty()
 
+    @classmethod
+    def get(self, twitter_id):
+        query = User.all()
+        query.filter('twitter_id =', int(twitter_id))
+        return query.get()
+
 # ----------------------------------------
 
 @app.before_request
@@ -105,9 +111,7 @@ def oauth_authorized(resp):
         flash(u'You denied the request to sign in.')
         return redirect(next_url)
 
-    query = User.all()
-    query.filter('twitter_id =', int(resp['user_id']))
-    user = query.get()
+    user = User.get(resp['user_id'])
 
     if user is None:
         user = User(twitter_id = int(resp['user_id']),
